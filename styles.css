@@ -1,0 +1,236 @@
+* {
+    padding: 0;
+    margin: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-smooth: antialiased;
+    font-family: Bauziet;
+    line-height: 1.3em;
+    overflow-x: hidden;
+}
+
+.header {
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 80px;
+    width: 50%;
+    height: 40px;
+    position: fixed;
+    left: 0;
+    top: 0;
+}
+
+#wordmark {
+    color: #009076;
+}
+
+.section {
+    height: 100vh;
+    height: 100dvh;
+}
+
+.section:not(#intro):not(#outro) {
+    text-align: center;
+    flex-direction: column;
+    padding: 100px 80px;
+}
+
+.section#intro, .section#outro {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #f8faf9;
+}
+
+.section__title {
+    font-size: 110px;
+    line-height: 1em;
+    font-weight: 560;
+    margin-bottom: 0.3em;
+}
+
+.section__description {
+    font-size: 28px;
+    line-height: 1.3em;
+    margin: 28px 0 28px 0;
+}
+
+section#intro > img {
+    position: absolute;
+    padding: 0;
+    margin: 0;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    transform: translateY(32%);
+    transition: transform 0.35s ease-in-out;
+    will-change: transform;
+    width: 760px;
+    height: 231px;
+}
+
+.intro__left, .intro__right, .outro__left, .outro__right {
+    height: 100%;
+    width: 50%;
+    padding: 80px;
+}
+
+.intro__left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.intro__left-tagline {
+    margin-top: 80px;
+}
+
+.intro__right {
+    position: relative;
+    background-color: #a8adad;
+}
+
+.intro__right img {
+    position: absolute;
+}
+
+.intro__right-deploy {
+    top: -90px;
+    left: 15%;
+    width: 680px;
+    height: 328px;
+}
+
+.intro__right-env-card {
+    top: 28%;
+    left: -90px;
+    width: 615px;
+    height: 349px;
+}
+
+.intro__right-type {
+    right: -75px;
+    bottom: -100px;
+    width: 370px;
+    height: 590px;
+}
+
+.intro__right-modal {
+    bottom: -200px;
+    width: 462px;
+    height: 515px;
+    right: 300px;
+}
+
+.outro__left {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.outro__right {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 35%;
+    background: url(public/images/dark-bg.png) no-repeat center center;
+    background-size: cover;
+}
+
+.outro__right-form {
+    padding: 0px;
+    width: 400px;
+    text-align: left;
+    background: #FFFFFF;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.25), 0px 15px 60px rgba(0, 0, 0, 0.15), 0px 5px 7px rgba(0, 0, 0, 0.05), 0px 4px 20px rgba(0, 0, 0, 0.04);
+    border-radius: 10px;
+    transform: translateX(-50%);
+}
+
+.input-container {
+    padding: 20px 24px;
+    border-bottom: 1px solid #E6E9EA;
+}
+
+.input-container__label {
+    display: block;
+    padding: 8px 0;
+    font-size: 12px;
+}
+
+.input {
+    display: block;
+    width: 100%;
+    background: #F8FAF9;
+    border: 1px solid #E6E9EA;
+    border-radius: 8px;
+    padding: 12px 15px;
+    transition: border-color 0.2s ease-out;
+    font: inherit;
+}
+
+.select {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    background-image: none;
+    display: block;
+    width: 100%;
+    box-shadow: 0px 0px 1px rgba(0, 0, 0, 0.5), 0px 2px 3px rgba(0, 0, 0, 0.05), 0px 4px 20px rgba(0, 0, 0, 0.04);
+    border-radius: 8px;
+    padding: 12px 15px;
+    background: #FFFFFF url('public/images/arrow-dropdown.svg') no-repeat right 10px center;
+}
+
+.button {
+    display: block;
+    width: 90%;
+    color: #FFFFFF;
+    background: #141616;
+    border-radius: 8px;
+    padding: 22px 13px;
+    font-weight: 590;
+}
+
+.outro__right-form .button {
+    align-self: center;
+    margin: 1rem 0;
+}
+
+.footer {
+    position: absolute;
+    left: 0;
+    margin-top: -120px;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    gap: 40px;
+    padding: 20px 80px;
+    font-size: 14px;
+    color: #989D9D;
+}
+
+.footer__link {
+    color: black;
+}
+
+@font-face {
+    font-family: "Bauziet";
+    src: url("public/fonts/Bauziet\ Norm\ Regular.ttf");
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: "Bauziet";
+    src: url("public/fonts/Bauziet\ Norm\ Medium.ttf");
+    font-weight: 500;
+}
+
+
