@@ -3,13 +3,16 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
     <link rel="stylesheet" href="styles.css" />
     <link rel="icon" href="public/favicon.png" />
+    <script defer src="script.js"></script>
+
     <title>Logical</title>
 </head>
 <body>
     <header class="header">
-        <svg id="wordmark" width="128" height="40" viewBox="0 0 128 40" fill="none" xmlns="http://www.w3.org/2000/svg" alt="Logical logo" style="transform: scale(1);" class="">
+        <svg class="header__wordmark" width="128" height="40" viewBox="0 0 128 40" fill="none" xmlns="http://www.w3.org/2000/svg" alt="Logical logo" style="transform: scale(1);" class="">
             <path d="M67.5873 0V5.94155H61.6458V0H67.5873Z" fill="currentColor"></path>
             <path d="M67.8011 30.8814H62.2309V14.1066H59.6406V9.19655H67.8011V30.8814Z" fill="currentColor"></path>
             <path d="M127.141 30.8814V0.788525H121.571V30.8814H127.141Z" fill="currentColor"></path>
@@ -19,24 +22,25 @@
             <path fill-rule="evenodd" clip-rule="evenodd" d="M104.619 17.8705L111.386 16.4233V16.0963C111.386 14.7484 111.042 13.7444 110.354 13.0842C109.666 12.4241 108.621 12.094 107.218 12.094C105.843 12.094 104.743 12.4516 103.917 13.1668C103.208 13.7578 102.773 14.6029 102.613 15.702H97.1379L97.192 15.2711C97.3845 13.6756 97.9347 12.314 98.8424 11.1862C99.7776 10.0585 100.988 9.19198 102.473 8.58682C103.986 7.98166 105.705 7.67908 107.631 7.67908C110.602 7.67908 112.94 8.39427 114.645 9.82464C116.351 11.2275 117.203 13.3181 117.203 16.0963V24.8436V30.29H111.71V26.5765H110.437C110.134 27.9244 109.35 29.0109 108.085 29.8361C106.847 30.6338 105.389 31.0327 103.711 31.0327C101.813 31.0327 100.245 30.4825 99.0074 29.3822C97.7971 28.2819 97.192 26.8378 97.192 25.0499C97.192 23.1794 97.7834 21.6527 98.9662 20.4699C100.176 19.2871 102.061 18.4206 104.619 17.8705ZM106.641 20.8L111.386 19.8434V23.0693C111.166 23.7295 110.767 24.3347 110.189 24.8848C109.639 25.435 108.993 25.8613 108.25 26.1639C107.507 26.4665 106.751 26.6178 105.981 26.6178C105.073 26.6178 104.33 26.4115 103.752 25.9989C103.202 25.5587 102.927 24.8848 102.927 23.9771C102.927 23.2619 103.189 22.6292 103.711 22.0791C104.234 21.5289 105.21 21.1026 106.641 20.8Z" fill="currentColor"></path>
             <path d="M5.5702 30.8814V0.788525H0V30.8814H5.5702Z" fill="currentColor"></path>
         </svg>
-        <svg id="mark" width="41" height="40" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg" alt="Logical mark">
+        <svg class="header__mark" width="41" height="40" viewBox="0 0 41 40" fill="none" xmlns="http://www.w3.org/2000/svg" alt="Logical mark">
             <path d="M21.8791 14.7796C21.8136 14.8645 21.6777 14.8204 21.6746 14.7131L21.2606 0.000840082L18.9785 0L18.5458 14.983C18.5427 15.0902 18.4068 15.1343 18.3413 15.0493L9.20889 3.18924L7.50028 4.429L16.0995 17.0199C16.16 17.1084 16.076 17.2239 15.9732 17.1937L1.37349 12.909L0.774414 14.754L15.3565 19.9526C15.4575 19.9886 15.4575 20.1315 15.3565 20.1675L0.817088 25.3605L1.36426 27.0424L16.4321 22.6114C16.535 22.5811 16.619 22.6967 16.5585 22.7852L7.71538 35.717L9.0078 36.656L17.776 25.2846C17.8415 25.1996 17.9774 25.2438 17.9804 25.351L18.3932 39.9987L21.8164 40L22.2048 26.5678C22.2079 26.4605 22.3438 26.4164 22.4093 26.5014L30.5807 37.1125L33.1205 35.2696L25.338 23.8733C25.2775 23.7847 25.3615 23.6692 25.4644 23.6995L38.6718 27.5877L39.5729 24.821L26.2598 20.0611C26.1588 20.025 26.1589 19.8823 26.2598 19.8462L39.542 15.1021L38.7124 12.5521L24.8481 16.6292C24.7451 16.6594 24.6611 16.5438 24.7217 16.4553L32.8625 4.55086L30.8777 3.10883L21.8791 14.7796Z" fill="currentColor"></path>
         </svg>
     </header>
-    <section id="intro" class="section">
-        <div class="intro__left">
-            <h1 class="section__title intro__left-tagline">Build<br/>Better<br/>Backends</h1>
+    <section class="section section-intro">
+        <div class="section-intro__left">
+            <h1 class="section__title section-intro__left-tagline">Build<br/>Better<br/>Backends</h1>
             <p class="section__description">The only platform that gives AI the ability to autonomously build web services.</p>
         </div>
-        <div class="intro__right">
-            <img class="intro__right-deploy" src="public/images/deploy.png"/>
-            <img class="intro__right-env-card" src="public/images/env-card.png"/>
-            <img class="intro__right-type" src="public/images/type.png"/>
-            <img class="intro__right-modal" src="public/images/modal.png"/>
+        <div class="section-intro__right">
+            <div class="section-intro__right-background"></div>
+            <img class="section-intro__right-img section-intro__right-img-deploy" src="public/images/deploy.png"/>
+            <img class="section-intro__right-img section-intro__right-img-env-card" src="public/images/env-card.png"/>
+            <img class="section-intro__right-img section-intro__right-img-type" src="public/images/type.png"/>
+            <img class="section-intro__right-img section-intro__right-img-modal" src="public/images/modal.png"/>
         </div>
-        <img src="public/images/big/index.png"/>
+        <img class="section-intro__screen" src="public/images/big/index.png"/>
     </section>
-    <section class="section">
+    <section class="section section2">
         <h2 class="section__title">Completely Visual</h2>
         <p class="section__description">Never touch the command line, from provision to production.</p>
     </section>
@@ -52,13 +56,13 @@
         <h2 class="section__title">Build With AI</h2>
         <p class="section__description">AI teammates can write, test, and deploy code on their own.</p>
     </section>
-    <section class="section" id="outro">
-        <div class="outro__left">
+    <section class="section section-outro">
+        <div class="section-outro__left">
             <h2 class="section__title">Get Early Access</h2>
             <p class="section__description">Sign up now to secure your place in line, and get notified when we launch.</p>
         </div>
-        <div class="outro__right">
-            <form class="form outro__right-form">
+        <div class="section-outro__right">
+            <form class="form section-outro__right-form">
                     <div class="input-container">
                       <label class="input-container__label">Name</label>
                       <input type="text" name="name" placeholder="Cool Person" id="nameField" class="input">
@@ -68,16 +72,16 @@
                       <input type="email" name="email" placeholder="you@cool.site" id="emailField" class="input">
                     </div>
                     <div class="input-container">
-                      <label class="input-container__label">Role</label>
-                      <select id="roleField" name="role" class="select">
-                        <option value="fullstack">Fullstack Developer</option>
-                        <option value="backend">Backend Developer</option>
-                        <option value="frontend">Frontend Developer</option>
-                        <option value="designer">Designer</option>
-                        <option value="product">Product</option>
-                        <option value="founder">Founder</option>
-                        <option value="other">Other</option>
-                      </select>
+                        <label class="input-container__label">Role</label>
+                        <select id="roleField" name="role" class="select">
+                            <option value="fullstack">Fullstack Developer</option>
+                            <option value="backend">Backend Developer</option>
+                            <option value="frontend">Frontend Developer</option>
+                            <option value="designer">Designer</option>
+                            <option value="product">Product</option>
+                            <option value="founder">Founder</option>
+                            <option value="other">Other</option>
+                        </select>
                     </div>
                     <button type="button" class="button">Join Waitlist</button>
             </form>

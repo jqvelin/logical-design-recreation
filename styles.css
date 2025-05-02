@@ -19,36 +19,49 @@ body {
     width: 50%;
     height: 40px;
     position: fixed;
+    z-index: 4;
     left: 0;
     top: 0;
 }
 
-#wordmark {
-    color: #009076;
+@supports (mix-blend-mode: difference) {
+    .header {
+        mix-blend-mode: difference;
+    }
+
+    .header__wordmark {
+        color: #F86A83;
+    }
+
+    
+    .header__wordmark--dark, .header__mark--dark {
+        color: #D2D3D4;
+    }
 }
 
 .section {
     height: 100vh;
     height: 100dvh;
-}
-
-.section:not(#intro):not(#outro) {
+    width: 100%;
     text-align: center;
+    display: flex;
     flex-direction: column;
     padding: 100px 80px;
 }
 
-.section#intro, .section#outro {
-    display: flex;
+.section-intro, .section-outro {
+    flex-direction: row;
+    text-align: start;
     align-items: center;
     justify-content: space-between;
     background-color: #f8faf9;
+    padding: 0;
 }
 
 .section__title {
     font-size: 110px;
     line-height: 1em;
-    font-weight: 560;
+    font-weight: 500;
     margin-bottom: 0.3em;
 }
 
@@ -58,7 +71,13 @@ body {
     margin: 28px 0 28px 0;
 }
 
-section#intro > img {
+.section-intro {
+    position: fixed;
+    top: 0;
+    left: 0;
+}
+
+.section-intro__screen {
     position: absolute;
     padding: 0;
     margin: 0;
@@ -72,66 +91,80 @@ section#intro > img {
     height: 231px;
 }
 
-.intro__left, .intro__right, .outro__left, .outro__right {
+.section-intro__left, .section-intro__right, .section-outro__left, .section-outro__right {
     height: 100%;
     width: 50%;
     padding: 80px;
 }
 
-.intro__left {
+.section-intro__left {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.intro__left-tagline {
+.section-intro__left-tagline {
     margin-top: 80px;
 }
 
-.intro__right {
+.section-intro__right {
     position: relative;
+}
+
+.section-intro__right-background {
+    position: absolute;
+    z-index: 2;
+    left: 0;
+    top: 0;
+    height: 100%;
+    width: 100%;
     background-color: #a8adad;
 }
 
-.intro__right img {
+.section-intro__right-img {
     position: absolute;
+    z-index: 3;
 }
 
-.intro__right-deploy {
+.section-intro__right-img-deploy {
     top: -90px;
     left: 15%;
     width: 680px;
     height: 328px;
 }
 
-.intro__right-env-card {
+.section-intro__right-img-env-card {
     top: 28%;
     left: -90px;
     width: 615px;
     height: 349px;
 }
 
-.intro__right-type {
+.section-intro__right-img-type {
     right: -75px;
     bottom: -100px;
     width: 370px;
     height: 590px;
 }
 
-.intro__right-modal {
+.section-intro__right-img-modal {
     bottom: -200px;
     width: 462px;
     height: 515px;
     right: 300px;
 }
 
-.outro__left {
+.section2 {
+    margin-top: 80%;
+}
+
+.section-outro__left {
     display: flex;
     flex-direction: column;
     justify-content: center;
 }
 
-.outro__right {
+.section-outro__right {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -140,7 +173,7 @@ section#intro > img {
     background-size: cover;
 }
 
-.outro__right-form {
+.section-outro__right-form {
     padding: 0px;
     width: 400px;
     text-align: left;
@@ -199,7 +232,7 @@ section#intro > img {
     font-weight: 590;
 }
 
-.outro__right-form .button {
+.section-outro__right-form .button {
     align-self: center;
     margin: 1rem 0;
 }
@@ -231,6 +264,12 @@ section#intro > img {
     font-family: "Bauziet";
     src: url("public/fonts/Bauziet\ Norm\ Medium.ttf");
     font-weight: 500;
+}
+
+@font-face {
+    font-family: "Bauziet";
+    src: url("public/fonts/Bauziet\ Norm\ Bold.ttf");
+    font-weight: 700;
 }
 
 
