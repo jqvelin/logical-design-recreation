@@ -33,8 +33,7 @@ body {
         color: #F86A83;
     }
 
-    
-    .header__wordmark--dark, .header__mark--dark {
+    .header__wordmark--dark, .header__mark {
         color: #D2D3D4;
     }
 }
@@ -73,6 +72,7 @@ body {
 
 .section-intro {
     position: fixed;
+    z-index: 3;
     top: 0;
     left: 0;
 }
@@ -113,7 +113,7 @@ body {
 
 .section-intro__right-background {
     position: absolute;
-    z-index: 2;
+    z-index: 1;
     left: 0;
     top: 0;
     height: 100%;
@@ -123,7 +123,7 @@ body {
 
 .section-intro__right-img {
     position: absolute;
-    z-index: 3;
+    z-index: 2;
 }
 
 .section-intro__right-img-deploy {
