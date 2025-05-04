@@ -7,26 +7,28 @@ const mark = document.querySelector(".header__mark");
 const sections = document.querySelectorAll(".section");
 
 const introSection = document.querySelector(".intro-section");
-const introSectionRightBg = document.querySelector(".intro-section__right-background")
-const deployImg = document.querySelector(".intro-section__right-img-deploy")
-const envCardImg = document.querySelector(".intro-section__right-img-env-card")
-const typeImg = document.querySelector(".intro-section__right-img-type")
-const modalImg = document.querySelector(".intro-section__right-img-modal")
-
+const introSectionRightBg = document.querySelector(".intro-section__right-background");
+const deployImg = document.querySelector(".intro-section__right-img-deploy");
+const envCardImg = document.querySelector(".intro-section__right-img-env-card");
+const typeImg = document.querySelector(".intro-section__right-img-type");
+const modalImg = document.querySelector(".intro-section__right-img-modal");
 
 const screensContainer = document.querySelector(".screens-container");
 const screens = document.querySelectorAll(".screen");
 
+const form = document.querySelector(".outro-section__right-form");
 
-// Часть introSection, которую проскролилли
+
+// Часть страницы, которую проскролилли
 // диапазон значений - [0; 1]
-let scrolledPart = 0;
+let pageScrolledPart = 0;
+let introSectionScrolledPart = 0;
 
-handleAnimations()
+handleAnimations();
 setupIntersectionObserver();
 
-window.addEventListener("scroll", handleAnimations)
-window.addEventListener("resize", handleAnimations)
+window.addEventListener("scroll", handleAnimations);
+window.addEventListener("resize", handleAnimations);
 
 function handleAnimations() {
     updateScrolledPart();
@@ -35,26 +37,38 @@ function handleAnimations() {
     handleScreensContainerAnimations();
     handleIntroSectionScroll();
     handleIntroSectionImgAnimations();
+    handleOutroSectionAnimations();
 }
 
 function setupIntersectionObserver() {
     const intersectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                screens.forEach(screen => screen.classList.remove("screen--visible"));
 
-    })
+                const screen = screensContainer.querySelector(`[src="${entry.target.dataset.screenSrc}"]`);
+                if (!screen) return;
+                
+                screen.classList.add("screen--visible");
+            }
+        })
+    }, {threshold: 0.2})
+
+    sections.forEach(section => intersectionObserver.observe(section));
 }
 
 function handleHeaderAnimations() {
     // Промотанная часть introSection, при достижении которой начинаем анимацию
     const animationBreakpoint = 0.25;
 
-    if (scrolledPart >= animationBreakpoint) {
-        wordmark.classList.add("header__wordmark--dark")
+    if (introSectionScrolledPart >= animationBreakpoint) {
+        wordmark.classList.add("header__wordmark--dark");
     } else {
-        wordmark.classList.remove("header__wordmark--dark")
+        wordmark.classList.remove("header__wordmark--dark");
     }
 
     // Игнорируем значения меньше animationBreakpoint
-    const restrictedScrolledPart = Math.max(animationBreakpoint, scrolledPart);
+    const restrictedScrolledPart = Math.max(animationBreakpoint, introSectionScrolledPart);
     // В каких пределах значения скролла будем менять ширину
     const scrollRange = 1 - animationBreakpoint;
 
@@ -80,13 +94,13 @@ function handleHeaderAnimations() {
     const MARK_AND_WORDMARK_SCALE = (restrictedScrolledPart - animationBreakpoint) / scrollRange * markAndWordmarkScaleRange + markAndWordmarkScaleMin;
 
     header.style = `width: ${WIDTH}%; transform: translateY(${TRANSLATE_Y}%)`;
-    mark.style = `transform: rotate(${MARK_ROTATE}deg) scale(${MARK_AND_WORDMARK_SCALE})`
-    wordmark.style = `transform: scale(${MARK_AND_WORDMARK_SCALE})`
+    mark.style = `transform: rotate(${MARK_ROTATE}deg) scale(${MARK_AND_WORDMARK_SCALE})`;
+    wordmark.style = `transform: scale(${MARK_AND_WORDMARK_SCALE})`;
 }
 
 function handleScreensContainerAnimations() {
     const animationBreakpoint = 0;
-    const restrictedScrolledPart = Math.min(0.3, scrolledPart)
+    const restrictedScrolledPart = Math.min(0.3, introSectionScrolledPart);
     const scrollRange = 0.3 - animationBreakpoint;
     const translateXMin = -25;
     const translateXRange = 0 - translateXMin;
@@ -107,10 +121,10 @@ function handleScreensContainerAnimations() {
 }
 
 function handleIntroSectionScroll() {
-    introSectionRightBg.style = `opacity: ${1 - scrolledPart}`;
+    introSectionRightBg.style = `opacity: ${1 - introSectionScrolledPart}`;
 
     const animationBreakpoint = 0.3;
-    const restrictedScrolledPart = Math.max(animationBreakpoint, scrolledPart);
+    const restrictedScrolledPart = Math.max(animationBreakpoint, introSectionScrolledPart);
     const scrollRange = 1 - animationBreakpoint;
 
     const translateYRange = -introSection.clientHeight;
@@ -123,7 +137,7 @@ function handleIntroSectionScroll() {
 function handleIntroSectionImgAnimations() {
     const animationsBreakpoint = 0.3;
     const scrollRange = 1 - animationsBreakpoint;
-    const restrictedScrolledPart = Math.max(animationsBreakpoint, scrolledPart);
+    const restrictedScrolledPart = Math.max(animationsBreakpoint, introSectionScrolledPart);
 
     const deployImgTranslateYRange = 400 - 0;
     const DEPLOY_IMG_TRANSLATE_Y = (restrictedScrolledPart - animationsBreakpoint) / scrollRange * deployImgTranslateYRange;
@@ -137,16 +151,26 @@ function handleIntroSectionImgAnimations() {
     const typeImgTranslateXRange = 300 - 0;
     const TYPE_IMG_TRANSLATE_X = (restrictedScrolledPart - animationsBreakpoint) / scrollRange * typeImgTranslateXRange;
 
-    deployImg.style = `transform: translateY(${DEPLOY_IMG_TRANSLATE_Y}px)`
-    modalImg.style = `transform: translateY(${MODAL_IMG_TRANSLATE_Y}px)`
-    envCardImg.style = `transform: translateX(${ENV_CARD_IMG_TRANSLATE_X}px)`
-    typeImg.style = `transform: translateX(${TYPE_IMG_TRANSLATE_X}px)`
+    deployImg.style = `transform: translateY(${DEPLOY_IMG_TRANSLATE_Y}px)`;
+    modalImg.style = `transform: translateY(${MODAL_IMG_TRANSLATE_Y}px)`;
+    envCardImg.style = `transform: translateX(${ENV_CARD_IMG_TRANSLATE_X}px)`;
+    typeImg.style = `transform: translateX(${TYPE_IMG_TRANSLATE_X}px)`;
 }
 
 function handleOutroSectionAnimations() {
-    
+    const animationBreakpoint = 0.9;
+    const scrollRange = 1 - animationBreakpoint;
+    const restrictedScrolledPart = Math.max(animationBreakpoint, pageScrolledPart);
+
+    const formTranslateXMin = -35;
+    const formTranslateXRange = -65 - formTranslateXMin;
+
+    const FORM_TRANSLATE_X = (restrictedScrolledPart - animationBreakpoint) / scrollRange * formTranslateXRange + formTranslateXMin;
+
+    form.style = `transform: translateX(${FORM_TRANSLATE_X}%)`;
 }
 
 function updateScrolledPart() {
-    scrolledPart = Math.min(document.documentElement.scrollTop / introSection.clientHeight, 1);
+    pageScrolledPart = Math.min((document.documentElement.scrollTop + document.documentElement.clientHeight) / document.documentElement.scrollHeight, 1);
+    introSectionScrolledPart = Math.min(document.documentElement.scrollTop / introSection.clientHeight, 1);
 }

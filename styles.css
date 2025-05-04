@@ -54,12 +54,16 @@ body {
 }
 
 .screen {
+    transform: translateY(100%);
+    position: absolute;
+    left: 0;
+    bottom: 0;
     width: 100%;
-    display: none;
+    transition: transform 0.35s ease-in-out;
 }
 
 .screen--visible {
-    display: initial
+    transform: translateY(0);
 }
 
 .section {
@@ -241,7 +245,7 @@ body {
     font-weight: 590;
 }
 
-.section-outro__right-form .button {
+.outro-section__right-form .button {
     align-self: center;
     margin: 1rem 0;
 }
