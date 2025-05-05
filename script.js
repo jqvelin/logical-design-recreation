@@ -18,6 +18,8 @@ const screens = document.querySelectorAll(".screen");
 
 const form = document.querySelector(".outro-section__right-form");
 
+const narrowViewportMatcher = window.matchMedia("(max-width: 1200px)");
+
 
 // Часть страницы, которую проскролилли
 // диапазон значений - [0; 1]
@@ -58,6 +60,11 @@ function setupIntersectionObserver() {
 }
 
 function handleHeaderAnimations() {
+    if (narrowViewportMatcher.matches) {
+        header.style = "";
+        return;
+    }
+    
     // Промотанная часть introSection, при достижении которой начинаем анимацию
     const animationBreakpoint = 0.25;
 
@@ -93,7 +100,12 @@ function handleHeaderAnimations() {
 
     const MARK_AND_WORDMARK_SCALE = (restrictedScrolledPart - animationBreakpoint) / scrollRange * markAndWordmarkScaleRange + markAndWordmarkScaleMin;
 
-    header.style = `width: ${WIDTH}%; transform: translateY(${TRANSLATE_Y}%)`;
+    header.style.transform = `translateY(${TRANSLATE_Y}%)`;
+
+    if (!narrowViewportMatcher.matches) {
+        header.style.width = WIDTH + "%";
+    }
+
     mark.style = `transform: rotate(${MARK_ROTATE}deg) scale(${MARK_AND_WORDMARK_SCALE})`;
     wordmark.style = `transform: scale(${MARK_AND_WORDMARK_SCALE})`;
 }
@@ -107,20 +119,33 @@ function handleScreensContainerAnimations() {
 
     const TRANSLATE_X = (restrictedScrolledPart - animationBreakpoint) / scrollRange * translateXRange + translateXMin;
 
-    const translateYMin = 40;
-    const translateYRange = 0 - translateYMin;
-
-    const TRANSLATE_Y = (restrictedScrolledPart - animationBreakpoint) / scrollRange * translateYRange + translateYMin;
-
     const scaleMin = 0.5;
     const scaleRange = 1 - scaleMin;
 
     const SCALE = (restrictedScrolledPart - animationBreakpoint) / scrollRange * scaleRange + scaleMin;
 
-    screensContainer.style = `transform: translateX(${TRANSLATE_X}%) translateY(${TRANSLATE_Y}%) scale(${SCALE})`;
+    const outroAnimationScrolledPart = Math.max(0.9, pageScrolledPart);
+    const TRANSLATE_Y = (outroAnimationScrolledPart - 0.9) / 0.1 * 700;
+
+    if (!narrowViewportMatcher.matches) {
+        screensContainer.style.translate = `${TRANSLATE_X}% ${TRANSLATE_Y}px`;
+        screensContainer.style.scale = SCALE;
+    } else {
+        const bottomMin = -30;
+        const bottomRange = 0 - bottomMin;
+
+        const BOTTOM = (restrictedScrolledPart - animationBreakpoint) / scrollRange * bottomRange + bottomMin;
+        screensContainer.style.bottom = BOTTOM + "%";
+        screensContainer.style.translate = `0 ${TRANSLATE_Y}px`;
+    }
 }
 
 function handleIntroSectionScroll() {
+    if (narrowViewportMatcher.matches) {
+        introSection.style = "";
+        return;
+    };
+
     introSectionRightBg.style = `opacity: ${1 - introSectionScrolledPart}`;
 
     const animationBreakpoint = 0.3;
@@ -158,6 +183,11 @@ function handleIntroSectionImgAnimations() {
 }
 
 function handleOutroSectionAnimations() {
+    if (narrowViewportMatcher.matches) {
+        form.style = "";
+        return;
+    }
+
     const animationBreakpoint = 0.9;
     const scrollRange = 1 - animationBreakpoint;
     const restrictedScrolledPart = Math.max(animationBreakpoint, pageScrolledPart);
